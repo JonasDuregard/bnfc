@@ -82,6 +82,7 @@ data SharedOptions = Options
   , visualStudio :: Bool      -- ^ Generate Visual Studio solution/project files
   , wcf :: Bool               -- ^ Windows Communication Foundation
   , functor :: Bool
+  , quasiQuoters :: Bool
   , outDir :: FilePath        -- ^ Target directory for generated files
   } deriving (Eq,Show,Ord)
 
@@ -108,6 +109,7 @@ defaultOptions = Options
   , visualStudio = False
   , wcf = False
   , functor = False
+  , quasiQuoters = False
   , outDir  = "."
   , javaLexerParser = JLexCup
   }
@@ -208,6 +210,9 @@ specificOptions =
     , [TargetHaskell, TargetHaskellGadt, TargetProfile] )
   , ( Option []    ["functor"] (NoArg (\o -> o {functor = True}))
           "Make the AST a functor and use it to store the position of the nodes"
+    , [TargetHaskell,TargetHaskellGadt] )
+  , ( Option []    ["quoters"] (NoArg (\o -> o {quasiQuoters = True}))
+          "Generate QuasiQuoters for each entrypoint \n (E.g. exp :: QuasiQuoter for category Exp)"
     , [TargetHaskell] )
   ]
 

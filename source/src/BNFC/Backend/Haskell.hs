@@ -75,7 +75,7 @@ makeHaskell opts cf = do
         liftIO $ printf "Use Alex 3.0 to compile %s.\n" (alexFile opts)
     unless (cnf opts) $ do
       mkfile (happyFile opts) $
-        cf2HappyS parMod absMod lexMod errMod (glr opts) (byteStrings opts) (functor opts) cf
+        cf2HappyS parMod absMod lexMod errMod (glr opts) (byteStrings opts) (functor opts) (quasiQuoters opts) cf
       liftIO $ printf "%s Tested with Happy 1.15\n" (happyFile opts)
     mkfile (tFile opts)        $ testfile opts cf
     mkfile (txtFile opts)      $ cfToTxt (lang opts) cf
